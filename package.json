@@ -7,8 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.6.1",
     "express": "*",
-    "body-parser": "*"
+    "nodemon": "^1.18.9"
   },
   "author": "Ralf Graef",
   "license": "ISC"
