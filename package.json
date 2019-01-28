@@ -10,7 +10,9 @@
     "body-parser": "*",
     "ejs": "^2.6.1",
     "express": "*",
-    "nodemon": "^1.18.9"
+    "express-validator": "^5.3.1",
+    "nodemon": "^1.18.9",
+    "npm": "^6.7.0"
   },
   "author": "Ralf Graef",
   "license": "ISC"

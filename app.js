@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 // Set static path
 app.use(express.static(path.join(__dirname, 'public')));
 
+// express validator middleware
+app.use(expressValidator()); 
+
 let users = [
 	{
 		id: 1,
@@ -42,6 +45,17 @@ app.get('/', (req, res) => {
 		title: 'Customers',
 		users: users,
 	});
+});
+
+app.post('/users/add', (req, res)=>{
+	let newUser = {
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		email: req.body.email, 
+	}
+
+	console.log(newUser);
+
 });
 
 app.listen(3000, () => {
