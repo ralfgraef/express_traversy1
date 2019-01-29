@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const expressValidator = require('express-validator');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -16,6 +17,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // Set static path
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Mongo DB
+const uri = 'mongodb://ralf1968:mongodb1968@rgcluster-shard-00-00-fml6r.mongodb.net:27017,rgcluster-shard-00-01-fml6r.mongodb.net:27017,rgcluster-shard-00-02-fml6r.mongodb.net:27017/test?ssl=true&replicaSet=RGCluster-shard-0&authSource=admin&retryWrites=true'
+
+mongoose.connect(uri);
+let db = mongoose.connection;
 
 // Global vars
 app.use((req, res, next) => {
