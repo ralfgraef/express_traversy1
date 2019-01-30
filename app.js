@@ -50,6 +50,7 @@ app.get('/', (req, res) => {
 		if(err) {
 			console.log(err);
 		} else {
+			console.log(users[0]);
 			res.render('index', {
 				title: 'Customers',
 				users: users
