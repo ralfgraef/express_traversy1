@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+// Bring in model
+let User = require('./models/user');
 
 // View Engine
 app.set('view engine', 'ejs');
@@ -24,6 +26,16 @@ const uri = 'mongodb://ralf1968:mongodb1968@rgcluster-shard-00-00-fml6r.mongodb.
 mongoose.connect(uri);
 let db = mongoose.connection;
 
+//Check connection
+db.once('open', () => {
+	console.log('Connected to database ...');
+});
+
+// Check for db errors
+db.on('error', () => {
+	console.log(err);
+});
+
 // Global vars
 app.use((req, res, next) => {
 	res.locals.errors = null;
@@ -33,31 +45,16 @@ app.use((req, res, next) => {
 // express validator middleware
 app.use(expressValidator()); 
 
-let users = [
-	{
-		id: 1,
-		first_name: 'John',
-		last_name: 'Doe',
-		email: 'john@doe.com'
-	},
-	{
-		id: 2,
-		first_name: 'Jane',
-		last_name: 'Smith',
-		email: 'jane@gmail.com'
-	},
-	{
-		id: 3,
-		first_name: 'Ralf',
-		last_name: 'Graef',
-		email: 'ralf@graef.com'
-	},
-]
-
 app.get('/', (req, res) => {
-	res.render('index', {
-		title: 'Customers',
-		users: users,
+	User.find({}, (err, users) => {
+		if(err) {
+			console.log(err);
+		} else {
+			res.render('index', {
+				title: 'Customers',
+				users: users
+			});
+		}
 	});
 });
 
