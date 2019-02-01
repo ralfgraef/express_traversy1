@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mongo DB
 const uri = 'mongodb://ralf1968:mongodb1968@rgcluster-shard-00-00-fml6r.mongodb.net:27017,rgcluster-shard-00-01-fml6r.mongodb.net:27017,rgcluster-shard-00-02-fml6r.mongodb.net:27017/test?ssl=true&replicaSet=RGCluster-shard-0&authSource=admin&retryWrites=true'
 
-mongoose.connect(uri);
+mongoose.connect(uri, { useNewUrlParser: true });
 let db = mongoose.connection;
 
 //Check connection
