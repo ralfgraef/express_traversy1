@@ -74,12 +74,20 @@ app.post('/users/add', (req, res)=>{
 			errors: errors,
 		});
 	} else {
-		let newUser = {
+		let newUser = new User( {
 			first_name: req.body.first_name,
 			last_name: req.body.last_name,
 			email: req.body.email, 
-		}
-		console.log('SUCCESS')
+		});
+
+		console.log('New User: ', newUser);
+		newUser.save( (err, result) => {
+			if(err){
+				console.log('Fehler: ', err)
+			} else {
+				res.redirect('/');
+			}
+		});
 	}
 });
 
