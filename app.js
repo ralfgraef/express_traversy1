@@ -31,7 +31,7 @@ db.once('open', () => {
 	console.log('Connected to database ...');
 });
 
-// Check for db errors
+// Check for db error or errors
 db.on('error', () => {
 	console.log(err);
 });
