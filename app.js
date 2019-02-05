@@ -26,7 +26,7 @@ const uri = 'mongodb://ralf1968:mongodb1968@rgcluster-shard-00-00-fml6r.mongodb.
 mongoose.connect(uri, { useNewUrlParser: true });
 let db = mongoose.connection;
 
-//Check connection
+// Check connection to db
 db.once('open', () => {
 	console.log('Connected to database ...');
 });
